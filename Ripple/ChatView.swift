@@ -10,17 +10,15 @@ import SwiftUI
 
 
 struct ChatView: View {
-    private var name: String;
-    private var previousMessages: [Message];
+    private var contact: Contact;
     
-    init(_ name: String, _ previousMessages: [Message]) {
-        self.name = name
-        self.previousMessages = previousMessages;
+    init(_ contact: Contact) {
+        self.contact = contact
     }
     var body: some View {
         VStack {
-            Text(name)
-            ForEach(previousMessages) { msg in
+            Text(contact.name)
+            ForEach(contact.previousMessages) { msg in
                 
                 HStack {
                     msg.sender == "Hasan" ? Spacer() : nil
@@ -40,5 +38,6 @@ struct ChatView: View {
         Message("Hasan", "Ricky", "Hi, I'm Hasan!"),
         Message("Ricky", "Hasan", "I'm Ricky!")
     ]
-    ChatView("Ricky", messages)
+    let contact1 = Contact("Ricky", messages)
+    ChatView(contact1)
 }

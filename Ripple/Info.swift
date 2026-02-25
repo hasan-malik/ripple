@@ -29,9 +29,9 @@ class Contact: Identifiable {
     var name: String
     var previousMessages: [Message]
     
-    init(_ name: String){
+    init(_ name: String, _ initialMessages: [Message] = []){
         self.name = name
-        self.previousMessages = []
+        self.previousMessages = initialMessages
     }
     
     func addMessage(_ msg: Message) {

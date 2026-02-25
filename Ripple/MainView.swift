@@ -16,10 +16,15 @@ struct MainView: View {
         self.user = user
     }
     var body: some View {
-        List(user.contacts){ contact in
-            
-            RowView(contact.name, contact.previousMessages.last?.content ?? "")
+        NavigationStack {
+            List(user.contacts){ contact in
+                NavigationLink(destination: ChatView(contact)) {
+                    RowView(contact.name, contact.previousMessages.last?.content ?? "")
+                }
+                
+            }
         }
+
     }
 }
 
