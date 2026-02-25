@@ -22,6 +22,8 @@ struct SignupView: View {
     @State private var name: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
+    
+    @Binding var user: Profile?
 
     
     var body: some View {
@@ -70,12 +72,21 @@ struct SignupView: View {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(.primary, lineWidth: 1)
         }
+//        NavigationLink(destination: LoginView(user: $user)){
+//            Text("Already have an account? Log in")
+//                .font(.body)
+//                .padding()
+//                .foregroundStyle(.secondary)
+//        }
     }
     
 
 }
 
 #Preview {
-    SignupView()
+    @Previewable @State var user: Profile? = nil
+    NavigationStack{
+        SignupView(user: $user)
+    }
 }
 
