@@ -14,6 +14,8 @@ struct ChatView: View {
     
     private var contact: Contact;
     
+    @State private var currMsg: String = ""
+    
     init(_ contact: Contact) {
         self.contact = contact
     }
@@ -29,17 +31,29 @@ struct ChatView: View {
                 .padding()
 
             }
+            
+            Spacer()
+            
+            HStack {
+                TextField("Type a message...", text: $currMsg)
+                    .padding()
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.primary, lineWidth:1)
+                    }
+                Button("Send") {
+                    
+                }
+            }
+            .padding()
+
+                
+
+
+            
         }
         .navigationTitle(contact.name)
 
     }
 }
 
-#Preview {
-    let messages = [
-        Message("Hasan", "Ricky", "Hi, I'm Hasan!"),
-        Message("Ricky", "Hasan", "I'm Ricky!")
-    ]
-    let contact1 = Contact("Ricky", messages)
-    ChatView(contact1)
-}
