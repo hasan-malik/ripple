@@ -7,18 +7,7 @@
 
 import SwiftUI
 
-class Message: Identifiable {
-    var sender: String;
-    var recipient: String;
-    var content: String;
-    
-    
-    init(_ sender: String, _ recipient: String, _ content: String) {
-        self.sender = sender;
-        self.recipient = recipient;
-        self.content = content;
-    }
-}
+
 
 struct MessageView: View {
     
