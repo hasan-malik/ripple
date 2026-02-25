@@ -9,7 +9,7 @@ import Foundation
 
 class Profile {
     var name: String
-    private var contacts: [Contact]
+    var contacts: [Contact]
     
     init(_ name: String) {
         
@@ -24,7 +24,7 @@ class Profile {
 
 }
 
-class Contact {
+class Contact: Identifiable {
     
     var name: String
     private var previousMessages: [Message]

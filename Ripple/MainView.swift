@@ -16,9 +16,8 @@ struct MainView: View {
         self.user = user
     }
     var body: some View {
-        List{
-            RowView("Jake", "Are you coming to class?")
-            RowView("Matthew", "Yoooo")
+        List(user.contacts){ contact in
+            RowView(contact.name, "haha")
         }
     }
 }
