@@ -82,10 +82,25 @@ struct LoginView: View {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(.primary, lineWidth: 1)
             }
+            
+            NavigationLink(destination: SignupView()) {
+                Text("New to Ripple? Sign up")
+                    .font(.body)
+                    .padding()
+                    .foregroundStyle(.secondary)
+            }
+
         }
         
     }
     
 
+}
+
+#Preview {
+    @Previewable @State var user: Profile? = nil
+    NavigationStack{
+        LoginView(user: $user)
+    }
 }
 

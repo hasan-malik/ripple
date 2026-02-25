@@ -35,7 +35,10 @@ struct RippleApp: App {
                 MainView()
                     .environment(user)
             } else {
-                LoginView(user: $user) // on successful login, update <user>, so that we can enter MainView.
+                NavigationStack{
+                    LoginView(user: $user) // on successful login, update <user>, so that we can enter MainView.
+                }
+                
             }
         }
     }
