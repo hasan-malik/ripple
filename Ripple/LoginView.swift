@@ -18,6 +18,7 @@ struct FetchedProfileData: Codable {
 struct FetchedContactsData: Codable {
     var profile_id: UUID;
     var contact_id: UUID;
+    var saved_name: String;
 }
 
 struct LoginView: View {
@@ -72,7 +73,9 @@ struct LoginView: View {
                             let contacts: [FetchedContactsData] = try await supabase.from("contacts").select().equals("profile_id", value: matchedUser.id.uuidString).execute().value
                             
                             contacts.forEach{ contact in
-                                    
+                                print("Adding contact id: \(contact.contact_id)")
+                                user?.addContact(Contact(contact.saved_name, []))
+                                
                             }
                         }
                         
