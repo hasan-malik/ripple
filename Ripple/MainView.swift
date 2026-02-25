@@ -10,11 +10,14 @@ import SwiftUI
 
 struct MainView: View {
     
-    private var user: Profile
+    @Environment(Profile.self) var user
     
-    init(_ user: Profile){
-        self.user = user
-    }
+//    private var user: Profile
+//    
+//    init(_ user: Profile){
+//        self.user = user
+//    }
+    
     var body: some View {
         NavigationStack {
             List(user.contacts){ contact in
@@ -36,6 +39,6 @@ struct MainView: View {
     user.addContact(Contact("Ikrimah"))
     user.addContact(Contact("Habib"))
     
-    return MainView(user)
+    return MainView()
+        .environment(user)
 }
-
