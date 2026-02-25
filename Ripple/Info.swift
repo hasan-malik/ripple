@@ -25,6 +25,7 @@ class Profile {
 
 }
 
+@Observable
 class Contact: Identifiable {
     
     var name: String

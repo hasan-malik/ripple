@@ -42,7 +42,7 @@ struct ChatView: View {
                             .stroke(Color.primary, lineWidth:1)
                     }
                 Button("Send") {
-                    
+                    contact.previousMessages.append(Message(user.name, contact.name, currMsg))
                 }
             }
             .padding()
