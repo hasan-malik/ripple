@@ -6,39 +6,56 @@
 //
 
 import SwiftUI
+internal import Auth
+import Supabase
 
 struct LoginView: View {
     
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var showErrorMessage = false;
 
     
     var body: some View {
-        Text("Welcome to Ripple")
-            .font(.largeTitle)
-        TextField("email", text: $email)
-            .padding()
-            .background {
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(.primary, lineWidth: 1)
-            }
-            .padding()
-        TextField("password", text: $password)
-            .padding()
-            .background {
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(.primary, lineWidth: 1)
-            }
-            .padding()
-        
-        Button("Log In") {
+        VStack{
+            Text("Welcome to Ripple")
+                .font(.largeTitle)
+                .padding()
+            Text("Invalid email or password")
+                .font(.title)
+                .foregroundStyle(showErrorMessage ? .red : .clear)
+            TextField("email", text: $email)
+                .padding()
+                .background {
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(.primary, lineWidth: 1)
+                }
+                .padding()
+            TextField("password", text: $password)
+                .padding()
+                .background {
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(.primary, lineWidth: 1)
+                }
+                .padding()
             
+            Button("Log In") {
+                Task {
+                    do {
+                        let session = try await supabase.auth.signIn(email: email, password: password)
+                        
+                    } catch {
+                        showErrorMessage = true;
+                    }
+                }
+            }
+            .padding()
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(.primary, lineWidth: 1)
+            }
         }
-        .padding()
-        .background {
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(.primary, lineWidth: 1)
-        }
+        
     }
     
 
