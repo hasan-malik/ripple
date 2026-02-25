@@ -43,8 +43,11 @@ struct LoginView: View {
                 Task {
                     do {
                         let session = try await supabase.auth.signIn(email: email, password: password)
+                        print("Logged in! Session: \(session)")
+                        showErrorMessage = false;
                         
                     } catch {
+                        print("Login error: \(error)")
                         showErrorMessage = true;
                     }
                 }
