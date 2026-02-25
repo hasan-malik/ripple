@@ -8,7 +8,7 @@
 import Foundation
 
 class Profile {
-    private var name: String
+    var name: String
     private var contacts: [Contact]
     
     init(_ name: String) {
@@ -17,15 +17,25 @@ class Profile {
         self.contacts = []
         
     }
+    
+    func addContact(_ contact: Contact) {
+        contacts.append(contact)
+    }
 
 }
 
 class Contact {
     
+    var name: String
     private var previousMessages: [Message]
     
-    init(){
+    init(_ name: String){
+        self.name = name
         self.previousMessages = []
+    }
+    
+    func addMessage(msg: Message) {
+        previousMessages.append(msg)
     }
  
 }

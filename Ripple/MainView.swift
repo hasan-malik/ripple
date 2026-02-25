@@ -18,5 +18,8 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    let user = Profile("Imran")
+    user.addContact(Contact("Javaid"))
+    return MainView()
 }
+

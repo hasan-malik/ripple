@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct Welcome: View {
+    
+    private var user: Profile
+    
+    init(_ user: Profile){
+        self.user = user
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Welcome, \(user.name)")
+            .font(.largeTitle)
     }
 }
 
 #Preview {
-    Welcome()
+    let user = Profile("Imran")
+    Welcome(user)
 }
+
