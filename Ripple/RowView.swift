@@ -34,7 +34,7 @@ struct RowView: View {
 
 #Preview {
     List {
-        RowView("Jake", "Are you coming to class?")
+        
     }
 
 }
