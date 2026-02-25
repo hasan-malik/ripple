@@ -11,7 +11,7 @@ import SwiftUI
 
 struct ChatView: View {
     @Environment(Profile.self) var user
-    
+
     private var contact: Contact;
     
     @State private var currMsg: String = ""
@@ -24,9 +24,9 @@ struct ChatView: View {
             ForEach(contact.previousMessages) { msg in
                 
                 HStack {
-                    msg.sender == user.name ? nil : Spacer()
-                    MessageView(msg)
                     msg.sender == user.name ? Spacer() : nil
+                    MessageView(msg)
+                    msg.sender == user.name ? nil : Spacer()
                 }
                 .padding()
 
