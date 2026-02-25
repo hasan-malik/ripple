@@ -27,14 +27,14 @@ class Profile {
 class Contact: Identifiable {
     
     var name: String
-    private var previousMessages: [Message]
+    var previousMessages: [Message]
     
     init(_ name: String){
         self.name = name
         self.previousMessages = []
     }
     
-    func addMessage(msg: Message) {
+    func addMessage(_ msg: Message) {
         previousMessages.append(msg)
     }
  

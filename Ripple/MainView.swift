@@ -17,7 +17,8 @@ struct MainView: View {
     }
     var body: some View {
         List(user.contacts){ contact in
-            RowView(contact.name, "haha")
+            
+            RowView(contact.name, contact.previousMessages.last?.content ?? "")
         }
     }
 }
@@ -25,9 +26,11 @@ struct MainView: View {
 #Preview {
     let user = Profile("Imran")
     user.addContact(Contact("Javaid"))
+    user.contacts[user.contacts.count - 1].addMessage(Message("Imran", "Javaid", "Hello Javaid!"))
     user.addContact(Contact("Yaqoob"))
     user.addContact(Contact("Ikrimah"))
     user.addContact(Contact("Habib"))
+    
     return MainView(user)
 }
 
