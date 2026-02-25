@@ -17,7 +17,6 @@ struct ChatView: View {
     }
     var body: some View {
         VStack {
-            Text(contact.name)
             ForEach(contact.previousMessages) { msg in
                 
                 HStack {
@@ -29,6 +28,7 @@ struct ChatView: View {
 
             }
         }
+        .navigationTitle(contact.name)
 
     }
 }
