@@ -21,19 +21,20 @@ struct ChatView: View {
     }
     var body: some View {
         VStack {
-            ForEach(contact.previousMessages) { msg in
-                
-                HStack {
-                    msg.sender == user.name ? Spacer() : nil
-                    MessageView(msg)
-                    msg.sender == user.name ? nil : Spacer()
-                }
-                .padding()
+            
+            ScrollView{
+                ForEach(contact.previousMessages) { msg in
+                    
+                    HStack {
+                        msg.sender == user.name ? Spacer() : nil
+                        MessageView(msg)
+                        msg.sender == user.name ? nil : Spacer()
+                    }
+                    .padding()
 
+                }
             }
-            
-            Spacer()
-            
+        
             HStack {
                 TextField("Type a message...", text: $currMsg)
                     .padding()
@@ -43,6 +44,7 @@ struct ChatView: View {
                     }
                 Button("Send") {
                     contact.previousMessages.append(Message(user.name, contact.name, currMsg))
+                    currMsg = ""
                 }
             }
             .padding()
