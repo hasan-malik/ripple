@@ -17,6 +17,7 @@ import SwiftUI
 
 struct SignupView: View {
     
+    @State private var name: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
 
@@ -24,6 +25,13 @@ struct SignupView: View {
     var body: some View {
         Text("Welcome to Ripple")
             .font(.largeTitle)
+        TextField("name", text: $name)
+            .padding()
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(.primary, lineWidth: 1)
+            }
+            .padding()
         TextField("email", text: $email)
             .padding()
             .background {
@@ -31,7 +39,7 @@ struct SignupView: View {
                     .stroke(.primary, lineWidth: 1)
             }
             .padding()
-        TextField("password", text: $password)
+        SecureField("password", text: $password)
             .padding()
             .background {
                 RoundedRectangle(cornerRadius: 10)

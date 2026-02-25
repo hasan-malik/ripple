@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		96ABB28B2F4EDC1700F930BD /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 96ABB28A2F4EDC1700F930BD /* Auth */; };
+		96ABB28D2F4EDC1700F930BD /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 96ABB28C2F4EDC1700F930BD /* Functions */; };
+		96ABB28F2F4EDC1700F930BD /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 96ABB28E2F4EDC1700F930BD /* PostgREST */; };
+		96ABB2912F4EDC1700F930BD /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 96ABB2902F4EDC1700F930BD /* Realtime */; };
+		96ABB2932F4EDC1700F930BD /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 96ABB2922F4EDC1700F930BD /* Storage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		96E02F2A2F4E8F520060F69C /* Ripple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ripple.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +31,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96ABB28F2F4EDC1700F930BD /* PostgREST in Frameworks */,
+				96ABB28D2F4EDC1700F930BD /* Functions in Frameworks */,
+				96ABB28B2F4EDC1700F930BD /* Auth in Frameworks */,
+				96ABB2932F4EDC1700F930BD /* Storage in Frameworks */,
+				96ABB2912F4EDC1700F930BD /* Realtime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +78,11 @@
 			);
 			name = Ripple;
 			packageProductDependencies = (
+				96ABB28A2F4EDC1700F930BD /* Auth */,
+				96ABB28C2F4EDC1700F930BD /* Functions */,
+				96ABB28E2F4EDC1700F930BD /* PostgREST */,
+				96ABB2902F4EDC1700F930BD /* Realtime */,
+				96ABB2922F4EDC1700F930BD /* Storage */,
 			);
 			productName = Ripple;
 			productReference = 96E02F2A2F4E8F520060F69C /* Ripple.app */;
@@ -94,6 +112,9 @@
 			);
 			mainGroup = 96E02F212F4E8F510060F69C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				96ABB2892F4EDC1600F930BD /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 96E02F2B2F4E8F520060F69C /* Products */;
 			projectDirPath = "";
@@ -332,6 +353,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		96ABB2892F4EDC1600F930BD /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		96ABB28A2F4EDC1700F930BD /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96ABB2892F4EDC1600F930BD /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		96ABB28C2F4EDC1700F930BD /* Functions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96ABB2892F4EDC1600F930BD /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Functions;
+		};
+		96ABB28E2F4EDC1700F930BD /* PostgREST */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96ABB2892F4EDC1600F930BD /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = PostgREST;
+		};
+		96ABB2902F4EDC1700F930BD /* Realtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96ABB2892F4EDC1600F930BD /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Realtime;
+		};
+		96ABB2922F4EDC1700F930BD /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96ABB2892F4EDC1600F930BD /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Storage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 96E02F222F4E8F510060F69C /* Project object */;
 }
