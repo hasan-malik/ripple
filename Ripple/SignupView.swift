@@ -14,6 +14,8 @@
 //
 
 import SwiftUI
+internal import Auth
+import Supabase
 
 struct SignupView: View {
     
@@ -48,7 +50,13 @@ struct SignupView: View {
             .padding()
         
         Button("Sign Up") {
-            
+            Task { // task is like async in react!
+                do {
+                    try await supabase.auth.signUp(email: email, password: password)    
+                } catch {
+                    print("Error occured in sign up")
+                }
+            }
         }
         .padding()
         .background {
