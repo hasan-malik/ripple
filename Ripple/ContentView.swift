@@ -10,10 +10,16 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+            Text("Welcome to Ripple")
+            Text("Login:")
+            
+            TextField("m@example.com", text: .constant(""))
+                .textContentType(.username)
+                .textFieldStyle(.automatic)
+            
+            
+            
         }
         .padding()
     }
