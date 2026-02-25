@@ -19,7 +19,7 @@ struct MainView: View {
         NavigationStack {
             List(user.contacts){ contact in
                 NavigationLink(destination: ChatView(contact)) {
-                    RowView(contact.name, contact.previousMessages.last?.content ?? "")
+                    RowView(contact.name, contact.previousMessages.last?.content ?? "Start a conversation")
                 }
                 
             }

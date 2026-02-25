@@ -19,15 +19,16 @@ struct RowView: View {
     var body: some View {
         HStack {
             Circle()
-                .frame(width: 100, height: 100)
+                .frame(width: 75, height: 75)
             VStack(alignment: .leading) {
                 Text(name)
-                    .font(.headline)
+                    .font(.title)
                 Text(lastMessage)
                     
-            }
+            }.padding()
             
         }
+        .frame(maxHeight: 90)
 
     }
 }
