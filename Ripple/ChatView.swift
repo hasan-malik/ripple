@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-class Chat {
+class Chat: Identifiable {
     private var sender: String;
     private var recipient: String;
-    private var content: String;
+    var content: String;
     
     
     init(_ sender: String, _ recipient: String, _ content: String) {
@@ -31,11 +31,15 @@ struct ChatView: View {
     var body: some View {
         VStack {
             Text(name)
+            ForEach(previousChats) { chat in
+                Text(chat.content)
+            }
         }
 
     }
 }
 
 #Preview {
+    
     ChatView("Ricky", [])
 }
