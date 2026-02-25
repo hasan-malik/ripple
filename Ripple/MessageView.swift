@@ -8,8 +8,8 @@
 import SwiftUI
 
 class Message: Identifiable {
-    private var sender: String;
-    private var recipient: String;
+    var sender: String;
+    var recipient: String;
     var content: String;
     
     

@@ -21,7 +21,14 @@ struct ChatView: View {
         VStack {
             Text(name)
             ForEach(previousMessages) { msg in
-                MessageView(msg)
+                
+                HStack {
+                    msg.sender == "Hasan" ? Spacer() : nil
+                    MessageView(msg)
+                    msg.sender == "Hasan" ? nil : Spacer()
+                }
+                .padding()
+
             }
         }
 
