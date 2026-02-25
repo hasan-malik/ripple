@@ -62,7 +62,7 @@ struct LoginView: View {
                         // .value decodes the json into FetchedProfileData objects. this is why FetchedProfileData had to conform to Codable. Note that for this to work, it is imperative that the names of the columns in our public.profiles table match the names of the attributes of FetchedProfileData
                         
                         if let matchedUser = correspondingUsers.first {
-                            user = Profile(matchedUser.name, matchedUser.email)
+                            user = Profile(matchedUser.id, matchedUser.name, matchedUser.email)
                         }
                         
                         // just a note: in your .execute() query, you compare by email.

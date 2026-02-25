@@ -64,7 +64,7 @@ struct SignupView: View {
                     
                     await MainActor.run {
                         print("About to set user: \(name), \(email)")
-                        user = Profile(name, email)
+                        user = Profile(currentID, name, email)
                         print("user: \(user?.name) \(user?.email)")
                     }
 

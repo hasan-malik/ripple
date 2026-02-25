@@ -9,12 +9,15 @@ import Foundation
 
 @Observable
 class Profile {
+    
+    var id: UUID
     var name: String
     var email: String
     var contacts: [Contact]
     
-    init(_ name: String, _ email: String) {
+    init(_ id: UUID, _ name: String, _ email: String) {
         
+        self.id = id;
         self.name = name;
         self.email = email;
         self.contacts = []

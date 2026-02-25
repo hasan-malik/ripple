@@ -13,20 +13,24 @@ struct MainView: View {
     @Environment(Profile.self) var user
     
     var body: some View {
-        NavigationStack {
-            List(user.contacts){ contact in
-                NavigationLink(destination: ChatView(contact)) {
-                    RowView(contact.name, contact.previousMessages.last?.content ?? "Start a conversation")
-                }
+        NavigationStack{
+            VStack {
+                Text("Main")
+                    .font(.title)
                 
+                List(user.contacts){ contact in
+                    NavigationLink(destination: ChatView(contact)) {
+                        RowView(contact.name, contact.previousMessages.last?.content ?? "Start a conversation")
+                    }
+                    
+                }
             }
         }
-
     }
 }
 
 #Preview {
-    let user = Profile("Imran", "imran@email.com")
+    let user = Profile(UUID(), "Imran", "imran@email.com")
     user.addContact(Contact("Javaid"))
     user.contacts[user.contacts.count - 1].addMessage(Message("Imran", "Javaid", "Hello Javaid!"))
     user.contacts[user.contacts.count - 1].addMessage(Message("Javaid", "Imran", "Hello Imran!"))
