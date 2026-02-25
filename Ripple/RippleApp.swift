@@ -19,6 +19,7 @@ struct RippleApp: App {
 
     var body: some Scene {
         WindowGroup {
+            let _ = print("rerendered!")
             // "if let" syntax is the glory of the Swift programming language.
             if let user = user {
                 MainView()

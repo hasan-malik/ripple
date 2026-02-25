@@ -12,12 +12,6 @@ struct MainView: View {
     
     @Environment(Profile.self) var user
     
-//    private var user: Profile
-//    
-//    init(_ user: Profile){
-//        self.user = user
-//    }
-    
     var body: some View {
         NavigationStack {
             List(user.contacts){ contact in

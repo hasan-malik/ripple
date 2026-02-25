@@ -62,6 +62,13 @@ struct SignupView: View {
                     try await supabase.from("profiles").update(["name": name]).eq("id", value: currentID).execute()
                     // btw, in case you didn't know, ["name": name] is a dict in Swift
                     
+                    await MainActor.run {
+                        print("About to set user: \(name), \(email)")
+                        user = Profile(name, email)
+                        print("user: \(user?.name) \(user?.email)")
+                    }
+
+                    
                 } catch {
                     print("Error occured in sign up: \(error)")
                 }
