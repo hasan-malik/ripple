@@ -10,11 +10,13 @@ import Foundation
 @Observable
 class Profile {
     var name: String
+    var email: String
     var contacts: [Contact]
     
-    init(_ name: String) {
+    init(_ name: String, _ email: String) {
         
         self.name = name;
+        self.email = email;
         self.contacts = []
         
     }

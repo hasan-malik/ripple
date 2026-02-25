@@ -32,7 +32,7 @@ struct MainView: View {
 }
 
 #Preview {
-    let user = Profile("Imran")
+    let user = Profile("Imran", "imran@email.com")
     user.addContact(Contact("Javaid"))
     user.contacts[user.contacts.count - 1].addMessage(Message("Imran", "Javaid", "Hello Javaid!"))
     user.contacts[user.contacts.count - 1].addMessage(Message("Javaid", "Imran", "Hello Imran!"))

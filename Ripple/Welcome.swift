@@ -9,20 +9,43 @@ import SwiftUI
 
 struct Welcome: View {
     
-    private var user: Profile
-    
-    init(_ user: Profile){
-        self.user = user
-    }
+    @State private var email: String = ""
+    @State private var password: String = ""
+
     
     var body: some View {
-        Text("Welcome, \(user.name)")
+        Text("Welcome to Ripple")
             .font(.largeTitle)
+        TextField("email", text: $email)
+            .padding()
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(.primary, lineWidth: 1)
+            }
+            .padding()
+        TextField("password", text: $password)
+            .padding()
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(.primary, lineWidth: 1)
+            }
+            .padding()
+        
+        Button("Continue") {
+            
+        }
+        .padding()
+        .background {
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(.primary, lineWidth: 1)
+        }
     }
+    
+
 }
 
 #Preview {
-    let user = Profile("Imran")
-    Welcome(user)
+
+    Welcome()
 }
 

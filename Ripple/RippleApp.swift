@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct RippleApp: App {
     
-    let user = Profile("Imran")
+    let user = Profile("Imran", "imran@email.com")
     
     init() {
         user.addContact(Contact("Javaid"))
