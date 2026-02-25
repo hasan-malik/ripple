@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Welcome: View {
+struct LoginView: View {
     
     @State private var email: String = ""
     @State private var password: String = ""
@@ -31,7 +31,7 @@ struct Welcome: View {
             }
             .padding()
         
-        Button("Continue") {
+        Button("Log In") {
             
         }
         .padding()
@@ -46,6 +46,6 @@ struct Welcome: View {
 
 #Preview {
 
-    Welcome()
+    LoginView()
 }
 
