@@ -9,11 +9,19 @@ import SwiftUI
 internal import Auth
 import Supabase
 
+struct FetchedProfileData: Codable {
+    var name: String;
+    var email: String;
+    var id: UUID;
+}
+
 struct LoginView: View {
     
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var showErrorMessage = false;
+    
+    @Binding var user: Profile?;
 
     
     var body: some View {
@@ -31,7 +39,7 @@ struct LoginView: View {
                         .stroke(.primary, lineWidth: 1)
                 }
                 .padding()
-            TextField("password", text: $password)
+            SecureField("password", text: $password)
                 .padding()
                 .background {
                     RoundedRectangle(cornerRadius: 10)
@@ -45,6 +53,23 @@ struct LoginView: View {
                         let session = try await supabase.auth.signIn(email: email, password: password)
                         print("Logged in! Session: \(session)")
                         showErrorMessage = false;
+                        
+                        let currentEmail = session.user.email;
+                        
+                        let correspondingUsers: [FetchedProfileData] = try await supabase.from("profiles").select().eq("email", value: currentEmail).execute().value
+                        // the .execute() query returns an array containing json for the matching rows in the public.profiles table
+                        // obviously, in our program,0 <= the length of returned array <= 1
+                        // .value decodes the json into FetchedProfileData objects. this is why FetchedProfileData had to conform to Codable. Note that for this to work, it is imperative that the names of the columns in our public.profiles table match the names of the attributes of FetchedProfileData
+                        
+                        if let matchedUser = correspondingUsers.first {
+                            user = Profile(matchedUser.name, matchedUser.email)
+                        }
+                        
+                        // just a note: in your .execute() query, you compare by email.
+                        // that's fine—comparing by id would've been more "professional"-esque, though
+                        // you can access the id via session.user.id
+                        
+                        
                         
                     } catch {
                         print("Login error: \(error)")
@@ -62,10 +87,5 @@ struct LoginView: View {
     }
     
 
-}
-
-#Preview {
-
-    LoginView()
 }
 

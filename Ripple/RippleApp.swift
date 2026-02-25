@@ -10,21 +10,33 @@ import SwiftUI
 @main
 struct RippleApp: App {
     
-    let user = Profile("Imran", "imran@email.com")
+//    let user = Profile("Imran", "imran@email.com")
+//    
+//    init() {
+//        user.addContact(Contact("Javaid"))
+//        user.contacts[user.contacts.count - 1].addMessage(Message("Imran", "Javaid", "Hello Javaid!"))
+//        user.addContact(Contact("Yaqoob"))
+//        user.addContact(Contact("Ikrimah"))
+//        user.addContact(Contact("Habib"))
+//    }
     
-    init() {
-        user.addContact(Contact("Javaid"))
-        user.contacts[user.contacts.count - 1].addMessage(Message("Imran", "Javaid", "Hello Javaid!"))
-        user.addContact(Contact("Yaqoob"))
-        user.addContact(Contact("Ikrimah"))
-        user.addContact(Contact("Habib"))
-    }
+    // now this is really interesting. Profile is an observable class, so any changes to the <user> object
+    // will cause a rerender.
+    // so why do we need @State?
+    // because *when we reassign <user>*, we also need a rerender!
+    // and for that, we need @State.
+    @State private var user: Profile? = nil
 
     
     var body: some Scene {
         WindowGroup {
-            MainView()
-                .environment(user)
+            // "if let" syntax is the glory of the Swift programming language.
+            if let user = user {
+                MainView()
+                    .environment(user)
+            } else {
+                LoginView(user: $user) // on successful login, update <user>, so that we can enter MainView.
+            }
         }
     }
 }
