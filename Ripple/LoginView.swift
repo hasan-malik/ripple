@@ -47,6 +47,8 @@ struct LoginView: View {
                 .font(.title)
                 .foregroundStyle(showErrorMessage ? .red : .clear)
             TextField("email", text: $email)
+                .textInputAutocapitalization(.never)
+                .keyboardType(.emailAddress)
                 .padding()
                 .background {
                     RoundedRectangle(cornerRadius: 10)
@@ -54,6 +56,7 @@ struct LoginView: View {
                 }
                 .padding()
             SecureField("password", text: $password)
+                .textInputAutocapitalization(.never)
                 .padding()
                 .background {
                     RoundedRectangle(cornerRadius: 10)
