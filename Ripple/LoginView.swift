@@ -21,6 +21,14 @@ struct FetchedContactsData: Codable {
     var saved_name: String;
 }
 
+//struct FetchedMessagesData: Codable {
+//    var message_id: Int;
+//    var sender_id: UUID;
+//    var recipient_id: UUID;
+//    var content: String;
+//    var created_at: Date;
+//}
+
 struct LoginView: View {
     
     @State private var email: String = ""
@@ -76,9 +84,14 @@ struct LoginView: View {
                             // now, let's add all the Supabase contacts to the <user> object
                             let contacts: [FetchedContactsData] = try await supabase.from("contacts").select().equals("profile_id", value: matchedUser.id.uuidString).execute().value
                             
-                            contacts.forEach{ contact in
+                            for contact in contacts {
                                 print("Adding contact id: \(contact.contact_id)")
-                                user?.addContact(Contact(contact.saved_name, []))
+                                
+                                // search for messages
+                                
+                                let fetchedMessages: [Message] = try await supabase.from("messages").select().or("and(sender_id.eq.\(matchedUser.id.uuidString),recipient_id.eq.\(contact.contact_id.uuidString)),and(sender_id.eq.\(contact.contact_id.uuidString),recipient_id.eq.\(matchedUser.id.uuidString))").execute().value
+                                
+                                user?.addContact(Contact(contact.saved_name, fetchedMessages))
                                 
                             }
                         }

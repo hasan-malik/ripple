@@ -48,15 +48,30 @@ class Contact: Identifiable {
  
 }
 
-class Message: Identifiable {
-    var sender: String;
-    var recipient: String;
+class Message: Identifiable, Codable {
+//    var sender: String;
+//    var recipient: String;
+//    var content: String;
+//    
+//    
+//    init(_ sender: String, _ recipient: String, _ content: String) {
+//        self.sender = sender;
+//        self.recipient = recipient;
+//        self.content = content;
+//    }
+    
+
+    var sender_id: UUID;
+    var recipient_id: UUID;
+    var message_id: Int;
     var content: String;
+    var created_at: Date;
     
-    
-    init(_ sender: String, _ recipient: String, _ content: String) {
-        self.sender = sender;
-        self.recipient = recipient;
-        self.content = content;
+    init(sender_id: UUID, recipient_id: UUID, message_id: Int, content: String, created_at: Date) {
+            self.sender_id = sender_id;
+            self.recipient_id = recipient_id
+            self.content = content;
+            self.created_at = created_at
+            self.message_id = message_id;
     }
 }

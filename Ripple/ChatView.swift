@@ -26,9 +26,9 @@ struct ChatView: View {
                 ForEach(contact.previousMessages) { msg in
                     
                     HStack {
-                        msg.sender == user.name ? Spacer() : nil
+                        msg.sender_id == user.id ? Spacer() : nil
                         MessageView(msg)
-                        msg.sender == user.name ? nil : Spacer()
+                        msg.sender_id == user.id ? nil : Spacer()
                     }
                     .padding()
 
@@ -43,7 +43,7 @@ struct ChatView: View {
                             .stroke(Color.primary, lineWidth:1)
                     }
                 Button("Send") {
-                    contact.previousMessages.append(Message(user.name, contact.name, currMsg))
+//                    contact.previousMessages.append(Message(user.name, contact.name, currMsg))
                     currMsg = ""
                 }
             }

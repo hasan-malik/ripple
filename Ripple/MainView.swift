@@ -32,10 +32,10 @@ struct MainView: View {
 #Preview {
     let user = Profile(UUID(), "Imran", "imran@email.com")
     user.addContact(Contact("Javaid"))
-    user.contacts[user.contacts.count - 1].addMessage(Message("Imran", "Javaid", "Hello Javaid!"))
-    user.contacts[user.contacts.count - 1].addMessage(Message("Javaid", "Imran", "Hello Imran!"))
-    user.contacts[user.contacts.count - 1].addMessage(Message("Imran", "Javaid", "How are you"))
-    user.contacts[user.contacts.count - 1].addMessage(Message("Javaid", "Imran", "I am fine"))
+//    user.contacts[user.contacts.count - 1].addMessage(Message("Imran", "Javaid", "Hello Javaid!"))
+//    user.contacts[user.contacts.count - 1].addMessage(Message("Javaid", "Imran", "Hello Imran!"))
+//    user.contacts[user.contacts.count - 1].addMessage(Message("Imran", "Javaid", "How are you"))
+//    user.contacts[user.contacts.count - 1].addMessage(Message("Javaid", "Imran", "I am fine"))
 
     user.addContact(Contact("Yaqoob"))
     user.addContact(Contact("Ikrimah"))

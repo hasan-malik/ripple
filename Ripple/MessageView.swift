@@ -28,5 +28,5 @@ struct MessageView: View {
 }
 
 #Preview {
-    MessageView(Message("Hasan", "Ricky", "Hi, I'm Hasan!"))
+    
 }
