@@ -67,6 +67,10 @@ struct LoginView: View {
                         // obviously, in our program,0 <= the length of returned array <= 1
                         // .value decodes the json into FetchedProfileData objects. this is why FetchedProfileData had to conform to Codable. Note that for this to work, it is imperative that the names of the columns in our public.profiles table match the names of the attributes of FetchedProfileData
                         
+                        // just a note: in your above query, you compare by email.
+                        // that's fine—comparing by id would've been more "professional"-esque, though
+                        // you can access the id via session.user.id
+                        
                         if let matchedUser = correspondingUsers.first {
                             user = Profile(matchedUser.id, matchedUser.name, matchedUser.email)
                             // now, let's add all the Supabase contacts to the <user> object
@@ -78,12 +82,6 @@ struct LoginView: View {
                                 
                             }
                         }
-                        
-                        // just a note: in your .execute() query, you compare by email.
-                        // that's fine—comparing by id would've been more "professional"-esque, though
-                        // you can access the id via session.user.id
-                        
-
                         
                     } catch {
                         print("Login error: \(error)")
