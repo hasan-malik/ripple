@@ -28,6 +28,7 @@ struct LoginView: View {
     @State private var showErrorMessage = false;
     
     @Binding var user: Profile?;
+    @Binding var realtimeMessaging: RealtimeMessaging?;
 
     
     var body: some View {
@@ -75,7 +76,12 @@ struct LoginView: View {
                         // you can access the id via session.user.id
                         
                         if let matchedUser = correspondingUsers.first {
-                            user = Profile(matchedUser.id, matchedUser.name, matchedUser.email)
+                            // updating the Bindings
+                            let profile = Profile(matchedUser.id, matchedUser.name, matchedUser.email)
+                            user = profile
+                            realtimeMessaging = RealtimeMessaging(for: profile)
+                            
+                            
                             // now, let's add all the Supabase contacts to the <user> object
                             let contacts: [FetchedContactsData] = try await supabase.from("contacts").select().equals("profile_id", value: matchedUser.id.uuidString).execute().value
                             
@@ -114,8 +120,9 @@ struct LoginView: View {
 
 #Preview {
     @Previewable @State var user: Profile? = nil
+    @Previewable @State var realtimeMessaging: RealtimeMessaging? = nil
     NavigationStack{
-        LoginView(user: $user)
+        LoginView(user: $user, realtimeMessaging: $realtimeMessaging)
     }
 }
 
