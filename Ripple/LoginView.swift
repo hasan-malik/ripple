@@ -15,6 +15,11 @@ struct FetchedProfileData: Codable {
     var id: UUID;
 }
 
+struct FetchedContactsData: Codable {
+    var profile_id: UUID;
+    var contact_id: UUID;
+}
+
 struct LoginView: View {
     
     @State private var email: String = ""
@@ -63,13 +68,19 @@ struct LoginView: View {
                         
                         if let matchedUser = correspondingUsers.first {
                             user = Profile(matchedUser.id, matchedUser.name, matchedUser.email)
+                            // now, let's add all the Supabase contacts to the <user> object
+                            let contacts: [FetchedContactsData] = try await supabase.from("contacts").select().equals("profile_id", value: matchedUser.id.uuidString).execute().value
+                            
+                            contacts.forEach{ contact in
+                                    
+                            }
                         }
                         
                         // just a note: in your .execute() query, you compare by email.
                         // that's fine—comparing by id would've been more "professional"-esque, though
                         // you can access the id via session.user.id
                         
-                        
+
                         
                     } catch {
                         print("Login error: \(error)")
