@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Supabase
 
 
 
@@ -43,8 +44,16 @@ struct ChatView: View {
                             .stroke(Color.primary, lineWidth:1)
                     }
                 Button("Send") {
-//                    contact.previousMessages.append(Message(user.name, contact.name, currMsg))
-                    currMsg = ""
+                    Task {
+                        do {
+                            try await supabase.from("messages").insert(["sender_id": user.id.uuidString, "recipient_id": contact.id.uuidString, "content": currMsg]).execute()
+                            currMsg = ""
+                            print("Message sent successfully: \(currMsg)")
+                        } catch {
+                            print("Message sending error: \(error)")
+                        }
+                    }
+
                 }
             }
             .padding()

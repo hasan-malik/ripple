@@ -33,11 +33,12 @@ class Profile {
 @Observable
 class Contact: Identifiable {
     
-    
+    var id: UUID
     var name: String
     var previousMessages: [Message]
     
-    init(_ name: String, _ initialMessages: [Message] = []){
+    init(_ id: UUID, _ name: String, _ initialMessages: [Message] = []){
+        self.id = id;
         self.name = name
         self.previousMessages = initialMessages
     }

@@ -21,14 +21,6 @@ struct FetchedContactsData: Codable {
     var saved_name: String;
 }
 
-//struct FetchedMessagesData: Codable {
-//    var message_id: Int;
-//    var sender_id: UUID;
-//    var recipient_id: UUID;
-//    var content: String;
-//    var created_at: Date;
-//}
-
 struct LoginView: View {
     
     @State private var email: String = ""
@@ -94,7 +86,7 @@ struct LoginView: View {
                                 
                                 let fetchedMessages: [Message] = try await supabase.from("messages").select().or("and(sender_id.eq.\(matchedUser.id.uuidString),recipient_id.eq.\(contact.contact_id.uuidString)),and(sender_id.eq.\(contact.contact_id.uuidString),recipient_id.eq.\(matchedUser.id.uuidString))").execute().value
                                 
-                                user?.addContact(Contact(contact.saved_name, fetchedMessages))
+                                user?.addContact(Contact(contact.contact_id, contact.saved_name, fetchedMessages))
                                 
                             }
                         }
