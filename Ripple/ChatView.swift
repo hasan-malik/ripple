@@ -7,32 +7,21 @@
 
 import SwiftUI
 
-class Chat: Identifiable {
-    private var sender: String;
-    private var recipient: String;
-    var content: String;
-    
-    
-    init(_ sender: String, _ recipient: String, _ content: String) {
-        self.sender = sender;
-        self.recipient = recipient;
-        self.content = content;
-    }
-}
+
 
 struct ChatView: View {
     private var name: String;
-    private var previousChats: [Chat];
+    private var previousMessages: [Message];
     
-    init(_ name: String, _ previousChats: [Chat]) {
+    init(_ name: String, _ previousMessages: [Message]) {
         self.name = name
-        self.previousChats = previousChats;
+        self.previousMessages = previousMessages;
     }
     var body: some View {
         VStack {
             Text(name)
-            ForEach(previousChats) { chat in
-                Text(chat.content)
+            ForEach(previousMessages) { msg in
+                MessageView(msg)
             }
         }
 
@@ -40,6 +29,9 @@ struct ChatView: View {
 }
 
 #Preview {
-    
-    ChatView("Ricky", [])
+    let messages = [
+        Message("Hasan", "Ricky", "Hi, I'm Hasan!"),
+        Message("Ricky", "Hasan", "I'm Ricky!")
+    ]
+    ChatView("Ricky", messages)
 }
