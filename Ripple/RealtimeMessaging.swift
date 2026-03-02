@@ -36,10 +36,30 @@ class RealtimeMessaging {
                 // so for us, <change> is of type AnyAction
                 // AnyAction is an enum
                 // the .record or .oldRecord attribute is the row of the table
-                print("5: change: \(change)")
+                print("5: change: \(change)\n")
                 switch change {
-                case .insert(let change):
-                        print("inserted:", change.record)
+                case .insert(let change): // there's a new message!
+                    
+                    do {
+                        let myDecoder = JSONDecoder()
+                        myDecoder.dateDecodingStrategy = .iso8601
+                        let message = try change.decodeRecord(as: Message.self, decoder: myDecoder)
+                        // decodeRecord is a supabase method. it automatically decodes change.record as a Message object. the other argument just tells some stuff about how to decode the JSON from Supabase into our Message object.
+                        
+                        print("7", message)
+                        if let contact = user.contacts.first(where: {
+                            $0.id == message.sender_id || $0.id == message.recipient_id}) {
+                            print(8, contact)
+                            contact.addMessage(message)
+                        }
+                        // this if-block finds the matching contact and adds this message to their .previousMessages.
+                        
+                    } catch {
+                        print("error with message insertion: \(error)")
+                    }
+
+ 
+    
                 case .delete(let change):
                         print("deleted:", change.oldRecord)
                 case .update(let change):
